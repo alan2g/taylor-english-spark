@@ -37,13 +37,13 @@ const LeadFormModal = ({ isOpen, onClose }: LeadFormModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md bg-card border-border glass-card [&>button]:hidden">
+      <DialogContent className="sm:max-w-md bg-card border-border glass-card [&>button]:hidden relative">
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          className="absolute right-4 top-4 z-50 p-1 rounded-full bg-muted/80 hover:bg-muted transition-colors"
+          aria-label="Fechar"
         >
           <X className="h-5 w-5 text-foreground" />
-          <span className="sr-only">Fechar</span>
         </button>
         
         <DialogHeader className="text-center pb-4">
