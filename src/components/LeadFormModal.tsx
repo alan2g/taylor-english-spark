@@ -15,31 +15,18 @@ const LeadFormModal = ({ isOpen, onClose }: LeadFormModalProps) => {
     email: "",
     phone: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  
 
   const isFormValid = formData.fullName.trim() !== "" && 
                       formData.email.trim() !== "" && 
                       formData.phone.trim() !== "";
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!isFormValid) return;
-    
-    setIsSubmitting(true);
-
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
+  const getWhatsAppUrl = () => {
     const encodedName = encodeURIComponent(formData.fullName.trim());
     const encodedEmail = encodeURIComponent(formData.email.trim());
     const encodedPhone = encodeURIComponent(formData.phone.trim());
-    const message = `Olá! Meu nome é ${encodedName}. Gostaria de testar meu nível de inglês.%0A%0AE-mail: ${encodedEmail}%0ATelefone: ${encodedPhone}`;
-    const whatsappUrl = `https://wa.me/5519981854103?text=${message}`;
-    
-    window.open(whatsappUrl, "_blank");
-
-    setFormData({ fullName: "", email: "", phone: "" });
-    setIsSubmitting(false);
-    onClose();
+    const message = encodeURIComponent(`Olá! Meu nome é ${formData.fullName.trim()}. Gostaria de testar meu nível de inglês.\n\nE-mail: ${formData.email.trim()}\nTelefone: ${formData.phone.trim()}`);
+    return `https://wa.me/5519981854103?text=${message}`;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +47,7 @@ const LeadFormModal = ({ isOpen, onClose }: LeadFormModalProps) => {
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <div className="space-y-5">
           <div className="space-y-2">
             <Label htmlFor="fullName" className="text-foreground">
               Nome Completo
@@ -112,23 +99,27 @@ const LeadFormModal = ({ isOpen, onClose }: LeadFormModalProps) => {
             />
           </div>
 
-          <Button
-            type="submit"
-            variant="hero"
-            size="xl"
-            className="w-full"
-            disabled={!isFormValid || isSubmitting}
-          >
-            {isSubmitting ? (
-              <span className="flex items-center gap-2">
-                <span className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                Enviando...
-              </span>
-            ) : (
-              "Testar Nível de Inglês"
-            )}
-          </Button>
-        </form>
+          {isFormValid ? (
+            <a
+              href={getWhatsAppUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center w-full rounded-xl bg-gradient-to-r from-primary via-primary to-accent text-primary-foreground font-semibold text-lg px-10 py-4 shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+            >
+              Testar Nível de Inglês
+            </a>
+          ) : (
+            <Button
+              type="button"
+              variant="hero"
+              size="xl"
+              className="w-full opacity-50 cursor-not-allowed"
+              disabled
+            >
+              Testar Nível de Inglês
+            </Button>
+          )}
+        </div>
 
         <p className="text-xs text-center text-muted-foreground mt-4">
           Ao enviar, você concorda em receber contato do English Center
