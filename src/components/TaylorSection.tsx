@@ -65,14 +65,16 @@ const TaylorSection = ({ onOpenForm }: TaylorSectionProps) => {
                 </li>
               </ul>
               
-              <Button 
-                variant="hero" 
-                size="lg" 
-                onClick={onOpenForm}
-                className="mt-2"
-              >
-                Testar Nível de Inglês
-              </Button>
+              <div className="mt-2 w-full flex justify-center">
+                <Button 
+                  variant="hero" 
+                  size="lg" 
+                  onClick={onOpenForm}
+                  className="w-full sm:w-auto"
+                >
+                  Testar Nível de Inglês
+                </Button>
+              </div>
             </div>
           </div>
         </div>
