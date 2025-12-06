@@ -99,26 +99,25 @@ const LeadFormModal = ({ isOpen, onClose }: LeadFormModalProps) => {
             />
           </div>
 
-          {isFormValid ? (
-            <a
-              href={getWhatsAppUrl()}
-              target="_top"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center w-full rounded-xl bg-gradient-to-r from-primary via-primary to-accent text-primary-foreground font-semibold text-lg px-10 py-4 shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
-            >
-              Testar Nível de Inglês
-            </a>
-          ) : (
-            <Button
-              type="button"
-              variant="hero"
-              size="xl"
-              className="w-full opacity-50 cursor-not-allowed"
-              disabled
-            >
-              Testar Nível de Inglês
-            </Button>
-          )}
+          <Button
+            type="button"
+            variant="hero"
+            size="xl"
+            className="w-full"
+            disabled={!isFormValid}
+            onClick={() => {
+              if (isFormValid) {
+                const url = getWhatsAppUrl();
+                if (window.top) {
+                  window.top.location.href = url;
+                } else {
+                  window.location.href = url;
+                }
+              }
+            }}
+          >
+            Testar Nível de Inglês
+          </Button>
         </div>
 
         <p className="text-xs text-center text-muted-foreground mt-4">
