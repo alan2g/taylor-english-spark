@@ -1,13 +1,28 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import ParticlesBackground from "@/components/ParticlesBackground";
+import HeroSection from "@/components/HeroSection";
+import TaylorSection from "@/components/TaylorSection";
+import BenefitsSection from "@/components/BenefitsSection";
+import ContactSection from "@/components/ContactSection";
+import LeadFormModal from "@/components/LeadFormModal";
 
 const Index = () => {
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
+  const openForm = () => setIsFormOpen(true);
+  const closeForm = () => setIsFormOpen(false);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <main className="relative min-h-screen overflow-hidden">
+      <ParticlesBackground />
+      
+      <HeroSection />
+      <TaylorSection onOpenForm={openForm} />
+      <BenefitsSection onOpenForm={openForm} />
+      <ContactSection />
+      
+      <LeadFormModal isOpen={isFormOpen} onClose={closeForm} />
+    </main>
   );
 };
 
