@@ -151,16 +151,18 @@ const LeadFormModal = ({ isOpen, onClose }: LeadFormModalProps) => {
             {errors.phone && <p className="text-xs text-destructive">{errors.phone}</p>}
           </div>
 
-          <Button
-            type="button"
-            variant="hero"
-            size="xl"
-            className="w-full"
-            disabled={isSubmitting}
-            onClick={handleSubmit}
-          >
-            {isSubmitting ? "Enviando..." : "Testar Nível de Inglês"}
-          </Button>
+          {formData.fullName.trim() && formData.email.trim() && formData.phone.trim() && (
+            <Button
+              type="button"
+              variant="hero"
+              size="xl"
+              className="w-full animate-fade-in"
+              disabled={isSubmitting}
+              onClick={handleSubmit}
+            >
+              {isSubmitting ? "Enviando..." : "Testar Nível de Inglês"}
+            </Button>
+          )}
         </div>
 
         <p className="text-xs text-center text-muted-foreground mt-4">
