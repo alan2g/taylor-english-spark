@@ -102,7 +102,7 @@ const LeadFormModal = ({ isOpen, onClose }: LeadFormModalProps) => {
           {isFormValid ? (
             <a
               href={getWhatsAppUrl()}
-              target="_blank"
+              target="_top"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center w-full rounded-xl bg-gradient-to-r from-primary via-primary to-accent text-primary-foreground font-semibold text-lg px-10 py-4 shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
             >
