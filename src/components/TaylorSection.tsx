@@ -11,11 +11,11 @@ const TaylorSection = ({ onOpenForm }: TaylorSectionProps) => {
       {/* Background decoration */}
       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1/3 h-2/3 bg-primary/5 blur-3xl rounded-full" />
       
-      <div className="container mx-auto max-w-4xl">
-        <div className="glass-card rounded-3xl p-8 md:p-12 glow-effect">
-          <div className="flex flex-col items-center text-center space-y-8">
+      <div className="container mx-auto max-w-3xl">
+        <div className="glass-card rounded-3xl p-6 md:p-10 glow-effect">
+          <div className="flex flex-col items-center text-center space-y-6">
             {/* Image */}
-            <div className="relative group w-full max-w-sm">
+            <div className="relative group w-full max-w-md">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/20 rounded-2xl blur-2xl group-hover:blur-3xl transition-all duration-500" />
               <div className="relative overflow-hidden rounded-2xl border-2 border-primary/30 group-hover:border-primary/50 transition-all duration-500">
                 <img 
@@ -36,31 +36,30 @@ const TaylorSection = ({ onOpenForm }: TaylorSectionProps) => {
             </div>
             
             {/* Content */}
-            <div className="space-y-6">
-              <div className="inline-block px-4 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-sm font-medium">
+            <div className="space-y-4 max-w-lg mx-auto">
+              <div className="inline-block px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-medium">
                 Conheça sua assistente
               </div>
               
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground leading-tight">
                 Conheça a <span className="text-glow text-primary">Taylor</span>
               </h2>
               
-              <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+              <p className="text-base text-muted-foreground leading-relaxed">
                 A Taylor é sua assistente virtual inteligente que vai te ajudar a descobrir 
-                seu nível atual de inglês e criar um plano personalizado para você evoluir 
-                de forma rápida e eficiente.
+                seu nível atual de inglês e criar um plano personalizado para você.
               </p>
               
-              <ul className="space-y-3 text-muted-foreground inline-flex flex-col items-start">
-                <li className="flex items-center gap-3">
+              <ul className="space-y-2 text-muted-foreground text-sm inline-flex flex-col items-center">
+                <li className="flex items-center gap-2">
                   <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                   Análise personalizada do seu nível
                 </li>
-                <li className="flex items-center gap-3">
+                <li className="flex items-center gap-2">
                   <span className="w-2 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: "0.2s" }} />
                   Disponível 24 horas por dia
                 </li>
-                <li className="flex items-center gap-3">
+                <li className="flex items-center gap-2">
                   <span className="w-2 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: "0.4s" }} />
                   Recomendações sob medida para você
                 </li>
@@ -68,9 +67,9 @@ const TaylorSection = ({ onOpenForm }: TaylorSectionProps) => {
               
               <Button 
                 variant="hero" 
-                size="xl" 
+                size="lg" 
                 onClick={onOpenForm}
-                className="mt-4"
+                className="mt-2"
               >
                 Testar Nível de Inglês
               </Button>

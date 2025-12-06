@@ -3,8 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { useToast } from "@/hooks/use-toast";
-
 
 interface LeadFormModalProps {
   isOpen: boolean;
@@ -18,20 +16,25 @@ const LeadFormModal = ({ isOpen, onClose }: LeadFormModalProps) => {
     phone: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
+
+  const isFormValid = formData.fullName.trim() !== "" && 
+                      formData.email.trim() !== "" && 
+                      formData.phone.trim() !== "";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isFormValid) return;
+    
     setIsSubmitting(true);
 
-    // Small delay for UX
     await new Promise((resolve) => setTimeout(resolve, 500));
 
-    // Build WhatsApp message
-    const message = `Olá! Meu nome é ${formData.fullName}. Gostaria de testar meu nível de inglês.%0A%0AE-mail: ${formData.email}%0ATelefone: ${formData.phone}`;
+    const encodedName = encodeURIComponent(formData.fullName.trim());
+    const encodedEmail = encodeURIComponent(formData.email.trim());
+    const encodedPhone = encodeURIComponent(formData.phone.trim());
+    const message = `Olá! Meu nome é ${encodedName}. Gostaria de testar meu nível de inglês.%0A%0AE-mail: ${encodedEmail}%0ATelefone: ${encodedPhone}`;
     const whatsappUrl = `https://wa.me/5519981854103?text=${message}`;
     
-    // Open WhatsApp
     window.open(whatsappUrl, "_blank");
 
     setFormData({ fullName: "", email: "", phone: "" });
@@ -70,6 +73,7 @@ const LeadFormModal = ({ isOpen, onClose }: LeadFormModalProps) => {
               value={formData.fullName}
               onChange={handleChange}
               required
+              maxLength={100}
               className="bg-input border-border focus:border-primary focus:ring-primary/20"
             />
           </div>
@@ -86,6 +90,7 @@ const LeadFormModal = ({ isOpen, onClose }: LeadFormModalProps) => {
               value={formData.email}
               onChange={handleChange}
               required
+              maxLength={255}
               className="bg-input border-border focus:border-primary focus:ring-primary/20"
             />
           </div>
@@ -102,6 +107,7 @@ const LeadFormModal = ({ isOpen, onClose }: LeadFormModalProps) => {
               value={formData.phone}
               onChange={handleChange}
               required
+              maxLength={20}
               className="bg-input border-border focus:border-primary focus:ring-primary/20"
             />
           </div>
@@ -111,7 +117,7 @@ const LeadFormModal = ({ isOpen, onClose }: LeadFormModalProps) => {
             variant="hero"
             size="xl"
             className="w-full"
-            disabled={isSubmitting}
+            disabled={!isFormValid || isSubmitting}
           >
             {isSubmitting ? (
               <span className="flex items-center gap-2">
