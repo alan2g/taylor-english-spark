@@ -49,38 +49,43 @@ const BenefitsSection = ({ onOpenForm }: BenefitsSectionProps) => {
         </div>
         
         <div className="grid md:grid-cols-2 gap-8">
-          {benefits.map((benefit, index) => (
-            <div 
-              key={benefit.title}
-              className="group glass-card rounded-2xl p-8 hover:glow-effect transition-all duration-500 hover:-translate-y-2"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {/* Icon */}
-              <div className="relative w-16 h-16 mb-6">
-                <div className="absolute inset-0 bg-primary/20 rounded-xl blur-lg group-hover:blur-xl transition-all duration-500" />
-                <div className="relative w-full h-full bg-gradient-to-br from-primary/30 to-accent/20 rounded-xl border border-primary/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                  <benefit.icon className="w-8 h-8 text-primary" />
-                </div>
-              </div>
-              
-              {/* Content */}
-              <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
-                {benefit.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                {benefit.description}
-              </p>
-              
-              <Button 
-                variant="outline" 
-                size="lg" 
-                onClick={onOpenForm}
-                className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300"
+          {benefits.map((benefit, index) => {
+            const isLastCard = index === benefits.length - 1;
+            return (
+              <div 
+                key={benefit.title}
+                className="group glass-card rounded-2xl p-8 hover:glow-effect transition-all duration-500 hover:-translate-y-2 text-center"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                Testar Nível de Inglês
-              </Button>
-            </div>
-          ))}
+                {/* Icon */}
+                <div className="relative w-16 h-16 mb-6 mx-auto">
+                  <div className="absolute inset-0 bg-primary/20 rounded-xl blur-lg group-hover:blur-xl transition-all duration-500" />
+                  <div className="relative w-full h-full bg-gradient-to-br from-primary/30 to-accent/20 rounded-xl border border-primary/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                    <benefit.icon className="w-8 h-8 text-primary" />
+                  </div>
+                </div>
+                
+                {/* Content */}
+                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
+                  {benefit.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {benefit.description}
+                </p>
+                
+                {isLastCard && (
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    onClick={onOpenForm}
+                    className="w-full mt-6 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300"
+                  >
+                    Testar Nível de Inglês
+                  </Button>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

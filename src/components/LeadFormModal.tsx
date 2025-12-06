@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
-import { X } from "lucide-react";
+
 
 interface LeadFormModalProps {
   isOpen: boolean;
@@ -24,13 +24,15 @@ const LeadFormModal = ({ isOpen, onClose }: LeadFormModalProps) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    // Small delay for UX
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
-    toast({
-      title: "Cadastro realizado com sucesso!",
-      description: "Em breve a Taylor entrará em contato com você.",
-    });
+    // Build WhatsApp message
+    const message = `Olá! Meu nome é ${formData.fullName}. Gostaria de testar meu nível de inglês.%0A%0AE-mail: ${formData.email}%0ATelefone: ${formData.phone}`;
+    const whatsappUrl = `https://wa.me/5519981854103?text=${message}`;
+    
+    // Open WhatsApp
+    window.open(whatsappUrl, "_blank");
 
     setFormData({ fullName: "", email: "", phone: "" });
     setIsSubmitting(false);
@@ -43,14 +45,8 @@ const LeadFormModal = ({ isOpen, onClose }: LeadFormModalProps) => {
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md bg-card border-border glass-card">
-        <button
-          onClick={onClose}
-          className="absolute right-4 top-4 p-1 rounded-lg hover:bg-muted transition-colors"
-        >
-          <X className="w-5 h-5 text-muted-foreground" />
-        </button>
+    <Dialog open={isOpen} onOpenChange={() => {}}>
+      <DialogContent className="sm:max-w-md bg-card border-border glass-card [&>button]:hidden">
         
         <DialogHeader className="text-center pb-4">
           <DialogTitle className="text-2xl font-bold text-foreground">

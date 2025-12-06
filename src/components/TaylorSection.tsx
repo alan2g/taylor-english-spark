@@ -34,8 +34,7 @@ const TaylorSection = ({ onOpenForm }: TaylorSectionProps) => {
                 </div>
               </div>
               
-              {/* Floating elements */}
-              <div className="absolute -top-4 -right-4 w-20 h-20 border border-primary/30 rounded-full animate-pulse-glow" />
+              {/* Floating element */}
               <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-primary/20 rounded-full blur-xl animate-float" />
             </div>
             
