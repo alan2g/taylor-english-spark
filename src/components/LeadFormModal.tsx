@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { X } from "lucide-react";
 
 interface LeadFormModalProps {
   isOpen: boolean;
@@ -36,15 +35,8 @@ const LeadFormModal = ({ isOpen, onClose }: LeadFormModalProps) => {
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md bg-card border-border glass-card [&>button]:hidden relative">
-        <button
-          onClick={onClose}
-          className="absolute right-4 top-4 z-50 p-1 rounded-full bg-muted/80 hover:bg-muted transition-colors"
-          aria-label="Fechar"
-        >
-          <X className="h-5 w-5 text-foreground" />
-        </button>
+    <Dialog open={isOpen} onOpenChange={() => {}}>
+      <DialogContent className="sm:max-w-md bg-card border-border glass-card [&>button]:hidden">
         
         <DialogHeader className="text-center pb-4">
           <DialogTitle className="text-2xl font-bold text-foreground">
