@@ -50,7 +50,6 @@ const BenefitsSection = ({ onOpenForm }: BenefitsSectionProps) => {
         
         <div className="grid md:grid-cols-2 gap-8">
           {benefits.map((benefit, index) => {
-            const isLastCard = index === benefits.length - 1;
             return (
               <div 
                 key={benefit.title}
@@ -72,20 +71,21 @@ const BenefitsSection = ({ onOpenForm }: BenefitsSectionProps) => {
                 <p className="text-muted-foreground leading-relaxed">
                   {benefit.description}
                 </p>
-                
-                {isLastCard && (
-                  <Button 
-                    variant="outline" 
-                    size="lg" 
-                    onClick={onOpenForm}
-                    className="w-full mt-6 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300"
-                  >
-                    Testar Nível de Inglês
-                  </Button>
-                )}
               </div>
             );
           })}
+        </div>
+        
+        {/* Button outside the cards */}
+        <div className="mt-12 flex justify-center">
+          <Button 
+            variant="hero" 
+            size="lg" 
+            onClick={onOpenForm}
+            className="w-full sm:w-auto"
+          >
+            Testar Nível de Inglês
+          </Button>
         </div>
       </div>
     </section>
