@@ -35,7 +35,6 @@ const LeadFormModal = ({ isOpen, onClose }: LeadFormModalProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
     }
@@ -44,7 +43,6 @@ const LeadFormModal = ({ isOpen, onClose }: LeadFormModalProps) => {
   const handleSubmit = async () => {
     if (isSubmitting) return;
     
-    // Validate with zod
     const result = leadSchema.safeParse(formData);
     if (!result.success) {
       const fieldErrors: Record<string, string> = {};
@@ -60,15 +58,18 @@ const LeadFormModal = ({ isOpen, onClose }: LeadFormModalProps) => {
     setIsSubmitting(true);
     setErrors({});
     
-    // Save lead to database
-    const { error } = await supabase.from("leads").insert({
-      full_name: result.data.fullName,
-      email: result.data.email,
-      phone: result.data.phone,
+    // Submit via Edge Function with rate limiting
+    const { data, error } = await supabase.functions.invoke('submit-lead', {
+      body: {
+        fullName: result.data.fullName,
+        email: result.data.email,
+        phone: result.data.phone,
+      },
     });
 
-    if (error) {
-      toast.error("Erro ao enviar. Tente novamente.");
+    if (error || (data && data.error)) {
+      const errorMessage = data?.error || "Erro ao enviar. Tente novamente.";
+      toast.error(errorMessage);
       setIsSubmitting(false);
       return;
     }
