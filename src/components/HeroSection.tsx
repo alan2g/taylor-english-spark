@@ -1,6 +1,6 @@
 import logo from "@/assets/logo.png";
 const HeroSection = () => {
-  return <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
+  return <section className="relative min-h-[70vh] flex items-center justify-center px-4 py-16 overflow-hidden">
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background pointer-events-none" />
       

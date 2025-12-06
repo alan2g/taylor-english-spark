@@ -7,15 +7,15 @@ interface TaylorSectionProps {
 
 const TaylorSection = ({ onOpenForm }: TaylorSectionProps) => {
   return (
-    <section className="relative py-24 px-4 overflow-hidden">
+    <section className="relative py-16 px-4 overflow-hidden">
       {/* Background decoration */}
       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1/3 h-2/3 bg-primary/5 blur-3xl rounded-full" />
       
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-4xl">
         <div className="glass-card rounded-3xl p-8 md:p-12 glow-effect">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="flex flex-col items-center text-center space-y-8">
             {/* Image */}
-            <div className="relative group">
+            <div className="relative group w-full max-w-sm">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/20 rounded-2xl blur-2xl group-hover:blur-3xl transition-all duration-500" />
               <div className="relative overflow-hidden rounded-2xl border-2 border-primary/30 group-hover:border-primary/50 transition-all duration-500">
                 <img 
@@ -33,13 +33,10 @@ const TaylorSection = ({ onOpenForm }: TaylorSectionProps) => {
                   </div>
                 </div>
               </div>
-              
-              {/* Floating element */}
-              <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-primary/20 rounded-full blur-xl animate-float" />
             </div>
             
             {/* Content */}
-            <div className="text-center md:text-left space-y-6">
+            <div className="space-y-6">
               <div className="inline-block px-4 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-sm font-medium">
                 Conheça sua assistente
               </div>
@@ -48,13 +45,13 @@ const TaylorSection = ({ onOpenForm }: TaylorSectionProps) => {
                 Conheça a <span className="text-glow text-primary">Taylor</span>
               </h2>
               
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
                 A Taylor é sua assistente virtual inteligente que vai te ajudar a descobrir 
                 seu nível atual de inglês e criar um plano personalizado para você evoluir 
                 de forma rápida e eficiente.
               </p>
               
-              <ul className="space-y-3 text-muted-foreground">
+              <ul className="space-y-3 text-muted-foreground inline-flex flex-col items-start">
                 <li className="flex items-center gap-3">
                   <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                   Análise personalizada do seu nível
@@ -73,7 +70,7 @@ const TaylorSection = ({ onOpenForm }: TaylorSectionProps) => {
                 variant="hero" 
                 size="xl" 
                 onClick={onOpenForm}
-                className="w-full md:w-auto mt-4"
+                className="mt-4"
               >
                 Testar Nível de Inglês
               </Button>
