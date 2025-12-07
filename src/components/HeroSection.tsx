@@ -24,7 +24,7 @@ const HeroSection = () => {
         animationDelay: "0.5s",
         animationFillMode: "forwards"
       }}>
-          Desbloqueie seu potencial no inglês com tecnologia de ponta
+          Teste seu inglês e descubra como melhorar ou aprender de forma simples e sem sair de casa!
         </p>
         
         {/* Animated line */}
